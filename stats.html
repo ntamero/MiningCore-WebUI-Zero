@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>miningcore-ui</title>
+    <title>Zero Community Pool</title>
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport"/>
     <meta name="viewport" content="width=device-width"/>
@@ -36,16 +36,16 @@
                 </a>
             </div>-->
             <ul class="nav">
-                <li class="active">
-                    <a href="stats.html">
-                        <i class="ti-stats-up"></i>
-                        <p>Stats</p>
-                    </a>
-                </li>
                 <li>
                     <a href="dashboard.html">
                         <i class="ti-dashboard"></i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+				<li class="active">
+                    <a href="stats.html">
+                        <i class="ti-stats-up"></i>
+                        <p>Stats</p>
                     </a>
                 </li>
                 <li>
@@ -70,12 +70,6 @@
                     <a href="connect.html">
                         <i class="ti-direction"></i>
                         <p>Connect</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="alerts.html">
-                        <i class="ti-bell"></i>
-                        <p>Alerts</p>
                     </a>
                 </li>
             </ul>
@@ -165,7 +159,214 @@
                             </div>
                         </div>
                     </div>-->
-                    <div class="col-lg-6 col-sm-6">
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-success">
+                                            <i class="ti-server"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Network</p>
+                                            <div id="networkCoinType"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-success">
+                                            <i class="ti-layout-grid3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Block Height</p>
+                                            <div id="blockHeight"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-warning">
+                                            <i class="ti-control-shuffle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Next Network Bits</p>
+                                            <div id="nextNetworkBits"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-warning">
+                                            <i class="ti-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Next Network Target</p>
+                                            <div id="nextNetworkTarget"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-credit-card"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Payout Scheme</p>
+                                            <div id="payoutType"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Pay Per Last (N) Shares
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-pie-chart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Pool Fee</p>
+                                            <div id="poolFeePercent"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> ZERO TX / Sheilding / Pool Fees
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-crown"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Minimum Payment</p>
+                                            <div id="poolMinPayFull"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-cup"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Total Paid</p>
+                                            <div id="totalPaidFull"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minute
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
@@ -190,12 +391,91 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
+
+                    <div class="col-lg-3 col-sm-3">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-2">
                                         <div class="icon-big icon-danger">
+                                            <i class="ti-wand"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Reward Type</p>
+                                            <div id="rewardType"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Personality 'ZERO_PoW'
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-danger">
+                                            <i class="ti-shield"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Algorithm</p>
+                                            <div id="coinFamily"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Parameters: N=192 K=7
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-warning">
+                                            <i class="ti-check-box"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Required Confirmations</p>
+                                            <div id="blockConfirmations"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Blocks to receive reward
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
                                             <i class="ti-pulse"></i>
                                         </div>
                                     </div>
@@ -215,12 +495,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
+
+                    <div class="col-lg-3 col-sm-3">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-2">
-                                        <div class="icon-big icon-info">
+                                        <div class="icon-big icon-warning">
                                             <i class="ti-pulse"></i>
                                         </div>
                                     </div>
@@ -240,19 +521,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
+
+                    <div class="col-lg-3 col-sm-3">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-2">
-                                        <div class="icon-big icon-warning">
-                                            <i class="ti-hummer"></i>
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-bar-chart"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-10">
                                         <div class="numbers">
-                                            <p>Network Difficulty</p>
-                                            <div id="networkDifficulty"></div>
+                                            <p>Percent of Network</p>
+                                            <div id="poolPercentofNetwork"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -265,18 +547,44 @@
                             </div>
                         </div>
                     </div>
+
+					<div class="col-lg-3 col-sm-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="icon-big icon-info">
+                                            <i class="ti-layout-grid2"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="numbers">
+                                            <p>Blocks / Day (Estimated)</p>
+                                            <div id="poolEstimatedBlocks">></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr/>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every minue</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-12 col-sm-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Hash Rate</h4>
+                                <h4 class="title">Hash Rate Pool</h4>
                                 <p class="category">Last 24 hours</p>
                             </div>
                             <div class="content">
                                 <div id="chartStatsHashRate" class="ct-chart"></div>
                                 <div class="footer">
                                     <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Network
-                                        <i class="fa fa-circle text-warning"></i> Pool
+                                        <i class="fa fa-circle text-info"></i> Pool
                                     </div>
                                     <hr>
                                     <div class="stats">
@@ -285,6 +593,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+		
+					<div class="col-lg-12 col-sm-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Miners</h4>
@@ -301,6 +612,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Hash Rate Network</h4>
+                                <p class="category">Last 24 hours</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartStatsNetworkHashRate" class="ct-chart"></div>
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-warning"></i> Network
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Update every hour
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -310,8 +643,8 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Theme Licenses
+                            <a href="https://github.com/zerocurrencycoin">
+                                Zero on GitHub
                             </a>
                         </li>
                     </ul>
@@ -319,8 +652,7 @@
                 <div class="copyright pull-right">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>
-                    , theme made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative
-                    Tim</a>
+                     made with <i class="fa fa-heart heart"></i> by <a href="http://zerocurrency.io">Zero</a>
                 </div>
             </div>
         </footer>
