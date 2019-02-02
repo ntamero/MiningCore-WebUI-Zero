@@ -111,19 +111,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
                         <div class="card card-user">
-                            <div class="image">
-                                <img src="assets/img/background.jpg" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                    <img class="avatar border-white" src="assets/img/zero.gif">
-                                    <h2 class="title">Official ZERO Community Mine!</h2>
-									<p><b>visit <a href="http://zerocurrency.io" target="_new">zerocurrency.io</a></b></p>
-									<h6 class="title">custom built with coinfoundry/minincore for Zero</h6>
-									<h5 class="title">0% FEE | PPLNS(3) | Equihash 192,7 | ZERO_PoW</h5>
-									<h5 class="title">eu1.easymine.rocks:2000 | eu2.easymine.rocks:2000 | na.easymine.rocks:2000</h5>
-									<h5 class="title">'z_address' private transaction mining supported</h5>
-                                </div>
+						<div id="dashboardPoolConfig" align="center"></div>
                             </div>
                             <hr>
                             <div class="content">
@@ -142,6 +130,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
+								<br />
                             </div>
                         </div>
                     </div>
@@ -402,7 +391,7 @@
                         </div>
                     </div>-->
                 </div>
-            </div>
+            
         </div>
 
         <footer class="footer">
@@ -453,7 +442,7 @@
         var renderCallback = $.Callbacks();
         renderCallback.add(function () {
             var walletAddress = '#walletAddress';
-
+			loadDashboardInfo();
             function render() {
                 clearInterval();
                 setInterval(function load() {

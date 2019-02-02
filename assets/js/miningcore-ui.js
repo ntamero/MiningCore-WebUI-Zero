@@ -70,7 +70,7 @@ function loadPools(renderCallback) {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadPools)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -106,7 +106,7 @@ function loadStatsData() {
 					$('#payoutScheme').text(value.paymentProcessing.payoutScheme);
 					$('#addressInfoLink').text(value.addressInfoLink);
 					$('#totalPaid').text(_formatter(value.totalPaid, 2, ''));
-					$('#totalPaidFull').text(_formatter(value.totalPaid, 2, '') + ' ' + value.coin.type);
+					$('#totalPaidFull').text(value.totalPaid.toFixed(1) + ' ' + value.coin.type);
 					$('#rewardType').text(value.networkStats.rewardType);
 					$('#blockConfirmations').text(value.paymentProcessing.minimumConfirmations);
 					$('#connectedPeers').text(value.networkStats.connectedPeers);
@@ -123,7 +123,7 @@ function loadStatsData() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadStatsData)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -243,7 +243,66 @@ function loadStatsChart() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadStatsChart)",
             }, {
-                type: 'danger',
+                type: 'info',
+                timer: 3000,
+            });
+        });
+}
+
+function loadDashboardInfo() {
+    return $.ajax(API + 'pools')
+        .done(function (data) {
+            var dashboardPoolConfig = '';
+            $.each(data.pools, function (index, value) {
+                if (currentPool === value.id) {
+					dashboardPoolConfig += '<div class="image">' + '<img src="assets/img/background' + value.coin.name.toLowerCase() + '.jpg" alt=""/></div>';
+					dashboardPoolConfig += '<div class="content">' + '<div class="author">' + '<img class="avatar border-white" src="assets/img/'+ value.coin.name.toLowerCase() + '.gif">';
+					dashboardPoolConfig += '<h2 class="title">Official ' + value.coin.name.toUpperCase() + ' Community Mine!</h2>';
+					dashboardPoolConfig += '<p><b>Official ' + value.coin.name + ' Website: <a href="http://zerocurrency.io" target="_new">zerocurrency.io</a></b></p>';
+					dashboardPoolConfig += '<h6 class="title">custom built with coinfoundry/minincore for ' + value.coin.name + '</h6>';
+					var hashtype = '';
+					var lastportnumber = '';
+					var laststratum = '';
+					var connectlist = '';
+					$.each(value.ports, function (port, options) {
+                        if (typeof(options.name) !== "undefined") {
+                            hashtype = options.name;
+                            } else {
+                                hashtype += '';
+                            };
+						if (typeof(options.listenAddress) !== "undefined") {
+                            connectlist += options.listenAddress;
+							connectlist += ':';
+							connectlist += port;
+							lastportnumber = port;
+							lastportnumber = options.listenAddress;
+							connectlist += ' | ';
+                            } else {
+                                connectlist += '';
+                            };
+                    });
+					dashboardPoolConfig += '<h5 class="title">' + value.poolFeePercent + '% FEE | ' + value.paymentProcessing.payoutScheme + '(' + value.paymentProcessing.payoutSchemeConfig.factor + ') | MinPay ' +  value.paymentProcessing.minimumPayment.toFixed(1) + ' ' +  value.coin.type +' | ' + hashtype + '</h5>';
+					dashboardPoolConfig += '<h5 class="title">' + value.poolStats.connectedMiners + ' miners connected with a hashrate of ' + _formatter(value.poolStats.poolHashrate, 1, 'Sols/s') +'</h5>';
+					dashboardPoolConfig += '<h5 class="title">' + connectlist + 'eu1.easymine.rocks:2000 | eu2.easymine.rocks:2000</h5>';
+					if (value.coin.type.toLowerCase() === "zec" || "zer") {
+                            dashboardPoolConfig += '<h5 class="title">t1 (Transparent) address supported</h5>';
+                            dashboardPoolConfig += '<h5 class="title">zc (Sprout) address supported (unsheild max 50 inputs ~100zer)</h5>';
+							dashboardPoolConfig += '<h5 class="title">zs (Sapling) address is currently unsupported.</h5>';
+                            dashboardPoolConfig += '<h5 class="title">telegram <a href="https://t.me/zerocurrency" target="_new">t.me/zerocurrency</a></h5>';
+                            } else {
+                                dashboardPoolConfig += '';
+                            };
+					dashboardPoolConfig += '</div>';
+                }
+            });
+            $('#dashboardPoolConfig').html(dashboardPoolConfig);
+        })
+        .fail(function () {
+            $.notify({
+                icon: "ti-cloud-down",
+                message: "Error: No response from API.<br>(loadConnectConfig)",
+            }, {
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -253,21 +312,22 @@ function loadDashboardData(walletAddress) {
     return $.ajax(API + 'pools/' + currentPool + '/miners/' + walletAddress)
         .done(function (data) {
             $('#pendingShares').text(data.pendingShares);
+            $('#pendingBalance').text(_formatter(data.pendingBalance, 8, 'ZER'));
+            $('#paidBalance').text(_formatter(data.totalPaid, 8, 'ZER'));
+            $('#paidToday').text(_formatter(data.todayPaid, 8, 'ZER'));
             var workerHashRate = 0;
             $.each(data.performance.workers, function (index, value) {
                 workerHashRate += value.hashrate;
             });
             $('#minerHashRate').text(_formatter(workerHashRate, 5, 'Sols/s'));
-            $('#pendingBalance').text(_formatter(data.pendingBalance, 8, 'ZER'));
-            $('#paidBalance').text(_formatter(data.totalPaid, 8, 'ZER'));
-            $('#paidToday').text(_formatter(data.todayPaid, 8, 'ZER'));
+
         })
         .fail(function () {
             $.notify({
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadDashboardData)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -310,7 +370,7 @@ function loadDashboardWorkerList(walletAddress) {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadDashboardWorkerList)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -339,7 +399,7 @@ function loadDashboardPaymentList(walletAddress) {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadDashroardPaymentsList)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -402,7 +462,7 @@ function loadDashboardChart(walletAddress) {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadDashboardChart)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -433,7 +493,7 @@ function loadMinersList() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadMinersList)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -441,20 +501,24 @@ function loadMinersList() {
 
 
 function loadBlocksList() {
-    return $.ajax(API + 'pools/' + currentPool + '/blocks?pageSize=200')
+    return $.ajax(API + 'pools/' + currentPool + '/blocks?pageSize=1000')
         .done(function (data) {
 	console.log(data)
-            var blockList = '<thead><tr><th>Timestamp</th><th>Height</th><th>Block Info</th><th>Effort</th><th>Status</th><th>Reward</th><th>Confirmed</th></tr></thead><tbody>';
+            var blockList = '<thead><tr><th>Timestamp</th><th>Height</th><th>Block Info (Hash / Miner)</th><th>Effort</th><th>Status</th></tr></thead><tbody>';
 	        var blockaddress = "https://zero.cryptonode.cloud/insight/block/";
 			var zeroaddress = "https://zero.cryptonode.cloud/insight/address/";
+			var blockcounter = 0;
+			var combinedeffort = 0;
             if (data.length > 0) {
                 $.each(data, function (index, value) {
 					var statusreplace = '0';
 					var rewardreplace = '0';
+					blockcounter = blockcounter + 1;
+					combinedeffort = combinedeffort + value.effort;
                     blockList += '<tr>';
                     blockList += '<td>' + new Date(value.created).toLocaleString() + '</td>';
-                    blockList += '<td>' + value.blockHeight + '</td>';
-                    blockList += '<td>Hash: <a href="' + blockaddress + value.hash + '"  target="_new">' + value.hash + ' </a><br />Miner: <a href="' + zeroaddress + value.miner + '"  target="_new">' + value.miner + ' </a></td>';
+                    blockList += '<td>' + value.blockHeight + '<br />' + Math.round(value.confirmationProgress * 100) + '%</td>';
+                    blockList += '<td>Hash: <a href="' + blockaddress + value.hash + '"  target="_new">' + value.hash + ' </a><br />' + value.miner + '</td>';
                     if (typeof(value.effort) !== "undefined") {
                         blockList += '<td>' + Math.round(value.effort * 100) + '%</td>';
                     } else {
@@ -469,14 +533,15 @@ function loadBlocksList() {
 					if (statusreplace === 'orphaned') {
 						rewardreplace = '0';
 					}
-                    blockList += '<td>' + statusreplace + '</td>';
-                    blockList += '<td>' + rewardreplace + '</td>';
-                    blockList += '<td>' + Math.round(value.confirmationProgress * 100) + '%</td>';
+                    blockList += '<td>' + statusreplace + '<br />';
+                    blockList += rewardreplace + '</td>';
                     blockList += '</tr>'
                 });
             } else {
-                blockList += '<tr><td colspan="7">None</td></tr>';
+                blockList += '<tr><td colspan="5">None</td></tr>';
             }
+			combinedeffort = (combinedeffort / blockcounter * 100);
+			blockList += '<tr><td colspan="5">' + combinedeffort.toFixed(2) + ' / ' + blockcounter + '</td></tr>';
             blockList += '</tbody>';
             $('#blockList').html(blockList);
         })
@@ -485,7 +550,7 @@ function loadBlocksList() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadBlocksList)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -516,7 +581,7 @@ function loadPaymentsList() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadPaymentsList)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
@@ -565,7 +630,7 @@ function loadConnectConfig() {
                 icon: "ti-cloud-down",
                 message: "Error: No response from API.<br>(loadConnectConfig)",
             }, {
-                type: 'danger',
+                type: 'info',
                 timer: 3000,
             });
         });
