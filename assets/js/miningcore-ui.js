@@ -259,7 +259,7 @@ function loadDashboardInfo() {
 					dashboardPoolConfig += '<div class="content">' + '<div class="author">' + '<img class="avatar border-white" src="assets/img/'+ value.coin.name.toLowerCase() + '.gif">';
 					dashboardPoolConfig += '<h2 class="title">Official ' + value.coin.name.toUpperCase() + ' Community Mine!</h2>';
 					dashboardPoolConfig += '<p><b>Official ' + value.coin.name + ' Website: <a href="http://zerocurrency.io" target="_new">zerocurrency.io</a></b></p>';
-					dashboardPoolConfig += '<h6 class="title">custom built with coinfoundry/minincore for ' + value.coin.name + '</h6>';
+					dashboardPoolConfig += '<h5 class="title">custom built with coinfoundry/minincore for ' + value.coin.name + '</h5>';
 					var hashtype = '';
 					var lastportnumber = '';
 					var laststratum = '';
@@ -276,22 +276,20 @@ function loadDashboardInfo() {
 							connectlist += port;
 							lastportnumber = port;
 							lastportnumber = options.listenAddress;
-							connectlist += ' | ';
                             } else {
                                 connectlist += '';
                             };
                     });
 					dashboardPoolConfig += '<h5 class="title">' + value.poolFeePercent + '% FEE | ' + value.paymentProcessing.payoutScheme + '(' + value.paymentProcessing.payoutSchemeConfig.factor + ') | MinPay ' +  value.paymentProcessing.minimumPayment.toFixed(1) + ' ' +  value.coin.type +' | ' + hashtype + '</h5>';
 					dashboardPoolConfig += '<h5 class="title">' + value.poolStats.connectedMiners + ' miners connected with a hashrate of ' + _formatter(value.poolStats.poolHashrate, 1, 'Sols/s') +'</h5>';
-					dashboardPoolConfig += '<h5 class="title">' + connectlist + 'eu1.easymine.rocks:2000 | eu2.easymine.rocks:2000</h5>';
 					if (value.coin.type.toLowerCase() === "zec" || "zer") {
-                            dashboardPoolConfig += '<h5 class="title">t1 (Transparent) address supported</h5>';
-                            dashboardPoolConfig += '<h5 class="title">zc (Sprout) address supported (unsheild max 50 inputs ~100zer)</h5>';
-							dashboardPoolConfig += '<h5 class="title">zs (Sapling) address is currently unsupported.</h5>';
+                            dashboardPoolConfig += '';
                             dashboardPoolConfig += '<h5 class="title">telegram <a href="https://t.me/zerocurrency" target="_new">t.me/zerocurrency</a></h5>';
                             } else {
                                 dashboardPoolConfig += '';
                             };
+							dashboardPoolConfig += '<h5 class="title">' + 'stratum+tcp://' + connectlist + '</h5>';
+							dashboardPoolConfig += '<h5 class="title">' + '"<b>zs</b>" sapling and "<b>t1</b>" transperent addresses supported</h5>';
 					dashboardPoolConfig += '</div>';
                 }
             });
@@ -471,15 +469,15 @@ function loadDashboardChart(walletAddress) {
 function loadMinersList() {
     return $.ajax(API + 'pools/' + currentPool + '/miners?pageSize=200')
         .done(function (data) {
-            var minerList = '<thead><tr><th>Address</th><th>Hash Rate MAX (Last 24hrs)</th><th>Share Rate MAX (Last 24 hours)</th></tr></thead><tbody>';
-	        var zeroaddress = "https://zero.cryptonode.cloud/insight/address/";
+            var minerList = '<thead><tr><th>Address</th><th>Hash Rate</th><th>Share Rate</th></tr></thead><tbody>';
+	        var zeroaddress = "https://insight.zerocurrency.io/insight/address/";
             if (data.length > 0) {
                 $.each(data, function (index, value) {
                     minerList += '<tr>';
                     minerList += '<td>' + '<a href="' + zeroaddress + value.miner.substring() + '"  target="_new">' + value.miner.substring() + '</a>' + '</td>';
                     //minerList += '<td><a href="' + value.minerAddressInfoLink + '" target="_blank">' + value.miner.substring(0, 12) + ' &hellip; ' + value.miner.substring(value.miner.length - 12) + '</td>';
-                    minerList += '<td>' + _formatter(value.hashrate, 5, 'Sols/s') + '</td>';
-                    minerList += '<td>' + _formatter(value.sharesPerSecond, 5, 'S/s') + '</td>';
+                    minerList += '<td>' + _formatter(value.hashrate, 0, 'Sols/s') + '</td>';
+                    minerList += '<td>' + _formatter(value.sharesPerSecond, 1, 'S/s') + '</td>';
                     minerList += '</tr>';
                 });
             } else {
@@ -505,8 +503,8 @@ function loadBlocksList() {
         .done(function (data) {
 	console.log(data)
             var blockList = '<thead><tr><th>Timestamp</th><th>Height</th><th>Block Info (Hash / Miner)</th><th>Effort</th><th>Status</th></tr></thead><tbody>';
-	        var blockaddress = "https://zero.cryptonode.cloud/insight/block/";
-			var zeroaddress = "https://zero.cryptonode.cloud/insight/address/";
+	        var blockaddress = "https://insight.zerocurrency.io/insight/block/";
+			var zeroaddress = "https://insight.zerocurrency.io/insight/address/";
 			var blockcounter = 0;
 			var combinedeffort = 0;
             if (data.length > 0) {
@@ -518,9 +516,45 @@ function loadBlocksList() {
                     blockList += '<tr>';
                     blockList += '<td>' + new Date(value.created).toLocaleString() + '</td>';
                     blockList += '<td>' + value.blockHeight + '<br />' + Math.round(value.confirmationProgress * 100) + '%</td>';
-                    blockList += '<td>Hash: <a href="' + blockaddress + value.hash + '"  target="_new">' + value.hash + ' </a><br />' + value.miner + '</td>';
+					if (value.miner.length > 38) {
+                        blockList += '<td>Hash: <a href="' + blockaddress + value.hash + '"  target="_new">' + value.hash.substring(0, 22) + ' &hellip; ' + value.hash.substring(value.hash.length - 22) + ' </a><br />' + value.miner.substring(0, 24) + ' &hellip; ' + value.miner.substring(value.miner.length - 24) + '</td>';
+                    } else {
+                        blockList += '<td>Hash: <a href="' + blockaddress + value.hash + '"  target="_new">' + value.hash.substring(0, 22) + ' &hellip; ' + value.hash.substring(value.hash.length - 22) + ' </a><br />' + value.miner + '</td>';
+                    }
+					blockList += '<td';
                     if (typeof(value.effort) !== "undefined") {
-                        blockList += '<td>' + Math.round(value.effort * 100) + '%</td>';
+						if (Math.round(value.effort * 100) < 10)
+						{
+							blockList += ' style=color:#00997A';
+						} else if (Math.round(value.effort * 100) < 20)
+						{
+							blockList += ' style=color:#00995C';
+						} else if (Math.round(value.effort * 100) < 30)
+						{
+							blockList += ' style=color:#009900';
+						} else if (Math.round(value.effort * 100) < 80)
+						{
+							blockList += ' style=color:#22B24C';
+						} else if (Math.round(value.effort * 100) < 130)
+						{
+							blockList += '';
+						} else if (Math.round(value.effort * 100) < 200)
+						{
+							blockList += ' style=color:#B3B300';
+						} else if (Math.round(value.effort * 100) < 300)
+						{
+							blockList += ' style=color:#E6B800';
+						} else if (Math.round(value.effort * 100) < 400)
+						{
+							blockList += ' style=color:#CCA300';
+						} else if (Math.round(value.effort * 100) < 2000)
+						{
+							blockList += ' style=color:#CC2900';
+						} else {
+							blockList += '';
+						}
+						blockList += '>';
+						blockList += (Math.round(value.effort * 100)) + '%</td>'
                     } else {
                         blockList += '<td>n/a</td>';
                     }
@@ -541,7 +575,7 @@ function loadBlocksList() {
                 blockList += '<tr><td colspan="5">None</td></tr>';
             }
 			combinedeffort = (combinedeffort / blockcounter * 100);
-			blockList += '<tr><td colspan="5">' + combinedeffort.toFixed(2) + ' / ' + blockcounter + '</td></tr>';
+			blockList += '<tr><td colspan="5">The average effort over ' + blockcounter + ' blocks is ' + combinedeffort.toFixed(2) + '%</td></tr>';
             blockList += '</tbody>';
             $('#blockList').html(blockList);
         })
@@ -593,14 +627,22 @@ function loadConnectConfig() {
             var connectPoolConfig = '<thead><tr><th>Item</th><th>Value</th></tr></thead><tbody>';
             $.each(data.pools, function (index, value) {
                 if (currentPool === value.id) {
-                    connectPoolConfig += '<tr><td>Algorithm</td><td>' + value.coin.algorithm + '</td></tr>';
+                    connectPoolConfig += '<tr><td>Name</td><td>' + value.coin.name + ' (' + value.networkStats.networkType + 'net)' + '</td></tr>';
+					connectPoolConfig += '<tr><td>Algorithm</td><td>' + value.coin.algorithm + '</td></tr>';
                     connectPoolConfig += '<tr><td>Wallet Address</td><td><a href="' + value.addressInfoLink + '" target="_blank">' + value.address.substring() + '</a></td></tr>';
-                    connectPoolConfig += '<tr><td>Payout Scheme</td><td>' + value.paymentProcessing.payoutScheme + '</td></tr>';
-                    connectPoolConfig += '<tr><td>Minimum Payment w/o #</td><td>' + value.paymentProcessing.minimumPayment + '</td></tr>';
+                    connectPoolConfig += '<tr><td>Payout Scheme</td><td>' + value.paymentProcessing.payoutScheme;
+					if (value.paymentProcessing.payoutScheme.toLowerCase() === "pplns") {
+                            connectPoolConfig += '(' + value.paymentProcessing.payoutSchemeConfig.factor + ') <i>&#160;&#160;&#160;*shares are applied to ' + value.paymentProcessing.payoutSchemeConfig.factor + ' blocks</i>';
+                            } else {
+                                connectPoolConfig += '';
+                            };
+					connectPoolConfig += '</td></tr>';
+					connectPoolConfig += '<tr><td>Block Maturity</td><td>' + value.paymentProcessing.minimumConfirmations + ' Confirmations</td></tr>';
+                    connectPoolConfig += '<tr><td>Minimum Payment w/o #</td><td>' + value.paymentProcessing.minimumPayment + ' ' + value.coin.type +'</td></tr>';
                     if (typeof(value.paymentProcessing.minimumPaymentToPaymentId) !== "undefined") {
                         connectPoolConfig += '<tr><td>Minimum Payment w/ #</td><td>' + value.paymentProcessing.minimumPaymentToPaymentId + '</td></tr>';
                     }
-                    connectPoolConfig += '<tr><td>Pool Fee</td><td>' + value.poolFeePercent + '%</td></tr>';
+					connectPoolConfig += '<tr><td>Pool Fee</td><td>' + value.poolFeePercent + '%</td></tr>';
                     $.each(value.ports, function (port, options) {
                         connectPoolConfig += '<tr><td>';
 						connectPoolConfig += 'Port ' + port;

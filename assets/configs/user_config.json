@@ -1,0 +1,28 @@
+{
+	"DEFAULTS" : {
+		"DEVICES" : "AUTO", 	
+		"APIPORT" : 0
+	},
+
+	"ZERO_COMMUNITY" : 
+	{
+		"COIN" : "ZER",
+		"POOLS" : [
+			{"POOL" : "pool.zerocurrency.io",
+			 "PORT" : "2000",
+			 "USER" : "t1XaK2a8EcKqQmwbLxhQVtDp7ip85U1JHGP.MyRig1",
+			 "PASS" : "x"}
+		]
+	},
+
+	"ZERO_COMMUNITY" : 
+	{
+		"COIN" : "ZER",
+		"POOLS" : [
+			{"POOL" : "zer-eu.forgetop.com",
+			 "PORT" : "2052",
+			 "USER" : "t1XaK2a8EcKqQmwbLxhQVtDp7ip85U1JHGP.MyRig1",
+			 "PASS" : "x"}
+		]
+	}
+}

@@ -109,114 +109,82 @@
         </nav>
 
         <div class="content">
-            <div class="container-fluid">
+
+		    <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-12 col-md-8 col-sm-3">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Miner Configuration</h4>
-                                <p class="category">This is the basic guide how to setup your miner to this pool.</p>
+                                <h4 class="title"><b>Connection Information</b></h4>
                             </div>
                             <div class="content">
                                 <div class="typo-line">
-                                    <h5><p class="category">Mine with</p>AMD GPUs</h5>
+                                    <h5><b>Miner Setup</b></h5>
                                 </div>
                                 <div class="typo-line">
-                                    <h6><p class="category">Using</p>LOLMINER</h6>
+                                    <table class="table table-striped">
+										<tr>
+										<td width = "120px"><b>lolMiner</b></td><td>BTT: <a href="https://bitcointalk.org/index.php?topic=4724735.0" target="_new"><i class="ti-info-alt"></i></a></td><td>Github: <a href="https://github.com/Lolliedieb/lolMiner-releases/releases/" target="_new"><i class="ti-github"></i></a></td><td>Example CFG: <a href="asssets/configs/user_config.json" download=""><i class="ti-download"></i></a></td><td>AMD: <a href="https://www.amd.com/en/support" target="_new"><i class="ti-check-box"></a></td><td>NVIDIA: <a href="https://www.geforce.com/drivers" target="_new"><i class="ti-check-box"></a></td><td>SMOS: <a href="https://simplemining.net" target="_new"><i class="ti-check-box"></a></td><td>HIVE: <a href="https://the.hiveos.farm" target="_new"><i class="ti-check-box"></a></td>
+										</tr>
+										<tr>
+										<td colspan="8">Command Line Examples:<br />Windows string: lolMiner.exe --coin ZER --pool stratum.zerocurrency.io,zer-eu.forgetop.com --port 2000,2052 --user walletaddress.rigname,walletaddress.rigname --pass x,x
+										<br />Linux string: ./lolMiner --coin ZER --pool stratum.zerocurrency.io,zer-eu.forgetop.com --port 2000,2052 --user walletaddress.rigname,walletaddress.rigname --pass x,x
+										<br />SMOS: --coin ZER --pool stratum.zerocurrency.io,zer-eu.forgetop.com --port 2000,2052 --user walletaddress.$rigName,walletaddress.$rigName --pass x,x</td>
+										</tr>
+									</table>
+									<table class="table table-striped">
+										<tr>
+										<td width = "120px"><b>Gminer</b></td><td>BTT: <a href="https://bitcointalk.org/index.php?topic=5034735.0" target="_new"><i class="ti-info-alt"></i></a></td><td>Github: <b>X</b></i></a></td><td>Example CFG: <a href="asssets/configs/mine_zero.bat" download=""><i class="ti-download"></i></a></td><td>AMD: <b>X</b></td><td>NVIDIA: <a href="https://www.geforce.com/drivers" target="_new"><i class="ti-check-box"></a></td><td>SMOS: <a href="https://simplemining.net" target="_new"><i class="ti-check-box"></a></td><td>HIVE: <a href="https://the.hiveos.farm" target="_new"><i class="ti-check-box"></a></td>
+										</tr>
+										<tr>
+										<td colspan="8">Command Line Examples:<br />Windows string: miner.exe --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.rigname --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.rigname --pass x
+										<br />Linux string: ./miner --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.rigname --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.rigname --pass x
+										<br />SMOS: --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.$rigName --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.$rigName --pass x --api 3333</td>
+										</tr>
+									</table>
+									<table class="table table-striped">
+										<tr>
+										<td width = "120px"><b>EWBF</b></td><td>BTT: <a href="https://bitcointalk.org/index.php?topic=4466962.0" target="_new"><i class="ti-info-alt"></i></a></td><td>Github: <b>X</b></td><td>Example CFG: <a href="asssets/configs/miner.cfg" target="_new"><i class="ti-download"></i></a></td><td>AMD: <b>X</b></td><td>NVIDIA: <a href="https://www.geforce.com/drivers" target="_new"><i class="ti-check-box"></a></td><td>SMOS: <a href="https://simplemining.net" target="_new"><i class="ti-check-box"></a></td><td>HIVE: <a href="https://the.hiveos.farm" target="_new"><i class="ti-check-box"></a></td>
+										</tr>
+										<tr>
+										<td colspan="8">Command Line Examples:<br />Windows string: miner.exe --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.rigname --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.rigname --pass x
+										<br />Linux string: ./miner --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.rigname --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.rigname --pass x
+										<br />SMOS: --algo 192_7 --pers ZERO_PoW --server stratum.zerocurrency.io --port 2000 --user walletaddress.$rigName --pass x --server zer-eu.forgetop.com --port 2052 --user walletaddress.$rigName --pass x</td>
+										</tr>
+									</table>
+									<p align="center"><ul>
+									<li>"<b>t1</b>" transparent address example: "t1XaK2a8EcKqQmwbLxhQVtDp7ip85U1JHGP"</li>
+									<li>"<b>zs</b>" sapling private address example: "zs1vwdad0s4qpkmkcj8q3klm6trvcy6pgqp004jqa89tnn4xd8m2awqanxcsw0ank36wgunkt5vc5h"</li>
+									<li>"<b>zc</b>" sprout private address is <u><i>depricated</i></u>: do <i>not</i> use addesses starting in "zc........"</li>
+									</ul></p>
+									<p align="center"><i>All strings include a backup server to <a href="https://zero.forgetop.com" target="_new">Zero.ForgeTop.Com</a> (A long time supporter of Zero)<br /><a href="https://suprnova.cc" target="_new">suprnova.cc</a> is Zero's longest support however requires registration<br />You may view a full pool list and hashrates on <a href="https://miningpoolstats.stream/zero" target="_new">MiningPoolStats.stream</a><br />We welcome the newer contributers <a href="equipool.1ds.us" target="_new">equipool.1ds.us</a>, <a href="https://zero-currency.com" target="_new">zero-currency.com</a>, <a href="cryptohost.top" target="_new">cryptohost.top</a>, <a href="bitpool.ro" target="_new">bitpool.ro</a> and <a href="equihash.pro" target="_new">equihash.pro</a><br />No matter where or who you mine with it is best practice to set a backup server.</i><br /><u><i>Don't miss the backup server opportunity of securing the Zero network.</i></u><br /><b>You must enter your wallet address in two locations in the miner string.</b></p>
+                                </div>
+							</div>
+							<div class="content">
+                                <div class="typo-line">
+                                    <h5><b>Stratum Server</b></h5>
                                 </div>
                                 <div class="typo-line">
-                                    <p>LOLMINER - Bitcoin Talk Link <a href="https://bitcointalk.org/index.php?topic=4724735.0" target="_new">https://bitcointalk.org/index.php?topic=4724735.0</a></p>
+                                    <table class="table table-striped">
+										<tr>
+										<td align="center"><b>stratum+tcp://URL</b></td><td align="center"><b>Port</b></td><td align="center"><b>Hardware</b></td><td align="center"><b>Hosting Location</b></td>
+										</tr>
+										<td align="center"><img src="assets/img/flags/eu.png"> <b>stratum.zerocurrency.io</b><br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<img src="assets/img/flags/de.png"> 51.38.119.190</b><td align="center">2000</td><td align="center">Dedicated Server<br />&#160;&#160;- Xeon (8 Core)<br />&#160;&#160;- 64GB DDR4</td><td align="center">OVH - Germany (LIM1)</td>
+										</tr>
+									</table>
+									<div align="center"><i>TCP Proxy Protocol for multi-rig stratum proxy servers is supported!</i></div>
                                 </div>
-                                <div class="typo-line">
-                                    <h5><p class="category">Mine with</p>Nvidia GPUs</h5>
-                                </div>
-                                <div class="typo-line">
-                                    <h6><p class="category">Using</p>LOLMINER / EWBF / GMINER</h6>
-                                </div>
-                                <div class="typo-line">
-                                    <p>LOLMINER - Bitcoin Talk Link <a href="https://bitcointalk.org/index.php?topic=4724735.0" target="_new">https://bitcointalk.org/index.php?topic=4724735.0</a></p>
-									<p>EWBF - Bitcoin Talk Link <a href="https://bitcointalk.org/index.php?topic=4466962.0" target="_new">https://bitcointalk.org/index.php?topic=4466962.0</a></p>
-									<p>GMINER - Bitcoin Talk Link <a href="https://bitcointalk.org/index.php?topic=5034735.0" target="_new">https://bitcointalk.org/index.php?topic=5034735.0</a></p>
-                                </div>
-                                <div class="typo-line">
-                                    <h5><p class="category">Stratum</p>Servers</h5>
-                                </div>
-                                <div class="typo-line">
-                                    <h6><p class="category">EUROPE (ONLINE)</p>France - OVH</h6>
-                                </div>
-                                <div class="typo-line">
-                                    <p>eu1.easymine.rocks:2000 (live) | eu2.easymine.rocks:2000 (live)</p>
-                                </div>
-                                <div class="typo-line">
-                                    <h6><p class="category">NORTH AMERICA (SOON)</p>NA - OVH</h6>
-                                </div>
-                                <div class="typo-line">
-									<p>us.easymine.rocks:2000 (soon) | ca.easymine.rocks:2000 (soon)</p>
-                                </div>
-                                <div class="typo-line">
-                                    <h6><p class="category">MINER STRNGS EXAMPLES</p></h6>
-                                </div>
-								<div class="typo-line">
-								    <p>LOL:./miner --coin zer --pool stratum.easymine.rocks --port 2000 --user walletaddress.rigname --pass x</p>
-                                    <p>EWBF:./miner --algo 192_7 --pers ZERO_PoW --server stratum.easymine.rocks --port 2000 --user walletaddress.rigname --pass x</p>
-                                    <p>both 't_address' and 'z_address' are valid for mining</p>
-                                </div>
-                                <!--<div class="typo-line">
-                                    <p class="category">Quote</p>
-                                    <blockquote>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                            wisi enim ad minim veniam.
-                                        </p>
-                                        <small>
-                                            Steve Jobs, CEO Apple
-                                        </small>
-                                    </blockquote>
-                                </div>
-                                <div class="typo-line">
-                                    <p class="category">Muted Text</p>
-                                    <p class="text-muted">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet.
-                                    </p>
-                                </div>
-                                <div class="typo-line">
-                                    <p class="category">Coloured Text</p>
-                                    <p class="text-primary">
-                                        Text Primary - Light Bootstrap Table Heading and complex bootstrap dashboard
-                                        you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-info">
-                                        Text Info - Light Bootstrap Table Heading and complex bootstrap dashboard you've
-                                        ever seen on the internet.
-                                    </p>
-                                    <p class="text-success">
-                                        Text Success - Light Bootstrap Table Heading and complex bootstrap dashboard
-                                        you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-warning">
-                                        Text Warning - Light Bootstrap Table Heading and complex bootstrap dashboard
-                                        you've ever seen on the internet.
-                                    </p>
-                                    <p class="text-danger">
-                                        Text Danger - Light Bootstrap Table Heading and complex bootstrap dashboard
-                                        you've ever seen on the internet.
-                                    </p>
-                                </div>
-                                <div class="typo-line">
-                                    <h2><p class="category">Small Tag</p>Header with small subtitle <br>
-                                        <small>".small" is a tag for the headers</small>
-                                    </h2>
-                                </div>-->
-                            </div>
+							</div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-12">
+				</div>
+			</div>
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-3">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Pool Configuration</h4>
-                                <p class="category">This shows the current pool settings.</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table id="connectPoolConfig" class="table table-striped"></table>
