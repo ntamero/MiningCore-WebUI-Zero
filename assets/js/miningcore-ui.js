@@ -1,6 +1,6 @@
 // config
-var API = 'https://apizero.easymine.rocks/api/'; // API address
-var defaultPool = 'zero'; // Default Pool ID
+var API = 'https://YOUR_DOMAIN_ADRESSE_OR_IP:4000/api/'; // API address
+var defaultPool = 'verge'; // Default Pool ID
 
 var currentPool = defaultPool;
 
